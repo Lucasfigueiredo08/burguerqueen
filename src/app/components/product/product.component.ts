@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { first, Observable } from 'rxjs';
-import { IProduct } from '../../models/product.model';
+import { IProduct, IProductExtraOption } from '../../models/product.model';
 import { AsyncPipe, Location, NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDivider } from '@angular/material/divider';
@@ -11,12 +11,13 @@ import { MatIcon } from '@angular/material/icon';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { MatRadioButton, MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [AsyncPipe, TranslateModule, MatDivider, MatMiniFabButton, MatIcon, 
-    MatButton, NgClass, MatCard, MatCardContent, FormsModule, MatCheckbox
+    MatButton, NgClass, MatCard, MatCardContent, FormsModule, MatCheckbox, MatRadioButton, MatRadioGroup
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
@@ -40,7 +41,7 @@ export class ProductComponent {
     }
 
     addProduct(product: IProduct) {
-      
+      console.log('Product added to cart', product);
     }
 
     goBack() {
@@ -55,6 +56,8 @@ export class ProductComponent {
       this.quantitySignal.update(value => value + 1)
     }
 
-
-
+    changeOption(options: IProductExtraOption[], changeOptions: MatRadioChange) {
+      options.forEach(option => option.activate = false);
+      changeOptions.value.activate = true;
+    }
 }

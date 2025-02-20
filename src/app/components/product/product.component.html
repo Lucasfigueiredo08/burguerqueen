@@ -76,8 +76,23 @@
                                                             </span>
 
                                                             <mat-checkbox [(ngModel)]="block.options[0].activate">
-
                                                             </mat-checkbox>
+                                                        }
+                                                        @if(block.options.length > 1) {
+                                                            <mat-radio-group class="d-flex flex-column text-start"
+                                                            (change)="changeOption(block.options, $event)"
+                                                            >
+
+                                                                @for(option of block.options; track option) {
+                                                                    <mat-radio-button
+                                                                    [checked]="option.activate"
+                                                                    [value]="option">
+                                                                    @if(option.name) {
+                                                                        {{option.name | translate}}
+                                                                    }
+                                                                    </mat-radio-button>
+                                                                }
+                                                            </mat-radio-group>
                                                         }
                                                     </mat-card-content>
                                                 </mat-card>
