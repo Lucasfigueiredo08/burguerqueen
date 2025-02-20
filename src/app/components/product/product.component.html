@@ -79,9 +79,9 @@
                                                             </mat-checkbox>
                                                         }
                                                         @if(block.options.length > 1) {
-
+                                                            @let extraSelected = block.options | extraSelected;
                                                             <span class="d-block">
-                                                                {{ (block.options | extraSelected)?.price }} $
+                                                                {{ extraSelected?.price }} $
                                                             </span>
 
                                                             <mat-radio-group class="d-flex flex-column text-start"
