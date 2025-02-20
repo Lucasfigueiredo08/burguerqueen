@@ -3,7 +3,7 @@ import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { first, Observable } from 'rxjs';
 import { IProduct, IProductExtraOption } from '../../models/product.model';
-import { AsyncPipe, Location, NgClass } from '@angular/common';
+import { AsyncPipe, JsonPipe, Location, NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
@@ -12,12 +12,14 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatRadioButton, MatRadioChange, MatRadioGroup } from '@angular/material/radio';
+import { ExtraSelectedPipe } from '../../pipes/extra-selected.pipe';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [AsyncPipe, TranslateModule, MatDivider, MatMiniFabButton, MatIcon, 
-    MatButton, NgClass, MatCard, MatCardContent, FormsModule, MatCheckbox, MatRadioButton, MatRadioGroup
+    MatButton, NgClass, MatCard, MatCardContent, FormsModule, MatCheckbox, MatRadioButton, MatRadioGroup,
+    ExtraSelectedPipe, JsonPipe
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
