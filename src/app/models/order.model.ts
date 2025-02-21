@@ -1,5 +1,6 @@
 import { Signal, signal, WritableSignal } from "@angular/core";
 import { IQuantityProduct } from "./quantity-product.model";
+import { IProduct } from "./product.model";
 
 
 export class Order {
@@ -8,6 +9,11 @@ export class Order {
 
     public get productsSignal(): Signal<IQuantityProduct[]> {
         return this._productsSignal.asReadonly();
+    }
+
+    private searchProduct(product: IProduct) {
+        return this._productsSignal().find((productQuantity: IQuantityProduct) => 
+            JSON.stringify(product) === JSON.stringify(productQuantity.product));
     }
 
 }
