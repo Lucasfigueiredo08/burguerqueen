@@ -64,6 +64,10 @@ export class Order {
         }
     }
 
+    public resetOrder() {
+        this._productsSignal.set([]);
+    }
+
     private removeProduct(productRemove: IProduct) {
         this._productsSignal.update(products => products.filter(
               (productQuantity: IQuantityProduct) => JSON.stringify(productRemove) !== JSON.stringify(productQuantity.product)

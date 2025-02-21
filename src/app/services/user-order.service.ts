@@ -25,4 +25,8 @@ export class UserOrderService {
   public oneLessProduct(product: IProduct) {
     this._order.oneLessProduct(product);
   }
+
+  public resetOrder() {
+    this._order.resetOrder();
+  }
 }
