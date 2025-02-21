@@ -1,4 +1,4 @@
-import { inject, Signal, signal, WritableSignal } from "@angular/core";
+import { computed, inject, Signal, signal, WritableSignal } from "@angular/core";
 import { IQuantityProduct } from "./quantity-product.model";
 import { IProduct } from "./product.model";
 import { CalculateTotalPricePipe } from "../pipes/calculate-total-price.pipe";
@@ -7,10 +7,21 @@ import { CalculateTotalPricePipe } from "../pipes/calculate-total-price.pipe";
 export class Order {
 
     private _productsSignal: WritableSignal<IQuantityProduct[]> = signal<IQuantityProduct[]>([]);
+    private _numProductsSignal: Signal<number> = computed(() => this.numProducts());
+    private _totalOrderSignal: Signal<number> = computed(() => this.totalOrder());
+
     private calculateTotalPricePipe = inject(CalculateTotalPricePipe);
 
     public get productsSignal(): Signal<IQuantityProduct[]> {
         return this._productsSignal.asReadonly();
+    }
+
+    public get numProductsSignal(): Signal<number> {
+        return this._numProductsSignal;
+    }
+
+    public get totalOrderSignal(): Signal<number> {
+        return this._totalOrderSignal;
     }
 
     public addProduct(product: IProduct, quantity: number = 1) {
