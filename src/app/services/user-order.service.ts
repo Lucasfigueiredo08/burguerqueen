@@ -1,6 +1,7 @@
 import { Injectable, Signal } from '@angular/core';
 import { Order } from '../models/order.model';
 import { IQuantityProduct } from '../models/quantity-product.model';
+import { IProduct } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,5 +12,7 @@ export class UserOrderService {
 
   public productsSignals: Signal<IQuantityProduct[]> = this._order.productsSignal;
 
-  constructor() { }
+  public addProduct(product: IProduct, quantity: number = 1) {
+    this._order.addProduct(product, quantity);
+  }
 }

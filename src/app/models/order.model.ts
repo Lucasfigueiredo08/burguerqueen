@@ -11,9 +11,24 @@ export class Order {
         return this._productsSignal.asReadonly();
     }
 
+    public addProduct(product: IProduct, quantity: number = 1) {
+        const products = this._productsSignal();
+        const productFound = this.searchProduct(product);
+
+        if(productFound) {
+            productFound.quantity += quantity;
+        } else {
+            products.push({
+                product,
+                quantity
+            })
+        }
+
+        this._productsSignal.set([...products]);
+    }
+
     private searchProduct(product: IProduct) {
-        return this._productsSignal().find((productQuantity: IQuantityProduct) => 
-            JSON.stringify(product) === JSON.stringify(productQuantity.product));
+        return this._productsSignal().find((productQuantity: IQuantityProduct) => JSON.stringify(product) === JSON.stringify(productQuantity.product));
     }
 
 }
