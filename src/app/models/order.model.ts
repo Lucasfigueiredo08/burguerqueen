@@ -40,6 +40,30 @@ export class Order {
         this._productsSignal.set([...products]);
     }
 
+    public oneMoreProduct(product: IProduct) {
+
+        const productFound = this.searchProduct(product);
+
+        if(productFound) {
+            productFound.quantity++;
+            this._productsSignal.set([...this._productsSignal()]);
+        }
+    }
+
+    public oneLessProduct(product: IProduct) {
+
+        const productFound = this.searchProduct(product);
+
+        if(productFound) {
+            productFound.quantity--;            
+            if(productFound.quantity == 0) {
+                this.removeProduct(product);
+            } else {
+                this._productsSignal.set([...this._productsSignal()]);
+            }
+        }
+    }
+
     private removeProduct(productRemove: IProduct) {
         this._productsSignal.update(products => products.filter(
               (productQuantity: IQuantityProduct) => JSON.stringify(productRemove) !== JSON.stringify(productQuantity.product)
