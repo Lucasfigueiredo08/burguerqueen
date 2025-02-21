@@ -6,6 +6,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CalculateTotalPricePipe } from './pipes/calculate-total-price.pipe';
 
 export function createTranslateLoader(httpClient: HttpClient){
     return new TranslateHttpLoader(httpClient, './i18n/', '.json')
@@ -26,7 +27,8 @@ export const appConfig: ApplicationConfig = {
         defaultLanguage: 'es'
       })
     ), 
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    CalculateTotalPricePipe
   
   ]
 };

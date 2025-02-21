@@ -6,6 +6,6 @@
         @for(language of languages; track language){
             <img [src]="'/img/flags/' + language + '.png'" [alt]="language" width="32px" height="32px" class="me-2" (click)="changeLang(language)">
         }
-        <mat-icon aria-hidden="false" matBadge="0" aria-label="Shopping cart" fontIcon="shopping_cart" routerLink="/pay-order"></mat-icon>
+        <mat-icon aria-hidden="false" [matBadge]="numProductsSignal()" aria-label="Shopping cart" fontIcon="shopping_cart" routerLink="/pay-order"></mat-icon>
     </div>
 </div>
