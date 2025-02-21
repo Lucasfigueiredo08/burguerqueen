@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { first, Observable } from 'rxjs';
 import { IProduct, IProductExtraOption } from '../../models/product.model';
 import { AsyncPipe, JsonPipe, Location, NgClass } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -15,6 +15,7 @@ import { MatRadioButton, MatRadioChange, MatRadioGroup } from '@angular/material
 import { ExtraSelectedPipe } from '../../pipes/extra-selected.pipe';
 import { CalculateTotalPricePipe } from '../../pipes/calculate-total-price.pipe';
 import { UserOrderService } from '../../services/user-order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -33,7 +34,9 @@ export class ProductComponent {
     private location: Location = inject(Location);
     private userOrderService = inject(UserOrderService);
     private router = inject(Router);
-    
+    private snackBar = inject(MatSnackBar)
+    private translateService = inject(TranslateService);
+
     public product$: Observable<IProduct> = new Observable<IProduct>();
     public quantitySignal: WritableSignal<number> = signal(1);
   
@@ -50,6 +53,16 @@ export class ProductComponent {
       console.log('Product added to cart', product);
       this.userOrderService.addProduct(product, this.quantitySignal());
       console.log(this.userOrderService.productsSignals());
+      this.snackBar.open(
+        this.translateService.instant('label.add.product.success'),
+        this.translateService.instant('label.ok'),
+        {
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 5000
+        }
+      );
+
       this.router.navigateByUrl('/categories');
     }
 
