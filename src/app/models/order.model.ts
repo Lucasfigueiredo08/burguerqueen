@@ -28,7 +28,7 @@ export class Order {
         const products = this._productsSignal();
         const productFound = this.searchProduct(product);
 
-        if(productFound) {
+        if (productFound) {
             productFound.quantity += quantity;
         } else {
             products.push({
@@ -38,6 +38,13 @@ export class Order {
         }
 
         this._productsSignal.set([...products]);
+    }
+
+    private removeProduct(productRemove: IProduct) {
+        this._productsSignal.update(products => products.filter(
+              (productQuantity: IQuantityProduct) => JSON.stringify(productRemove) !== JSON.stringify(productQuantity.product)
+            )
+        )
     }
 
     private searchProduct(product: IProduct) {
