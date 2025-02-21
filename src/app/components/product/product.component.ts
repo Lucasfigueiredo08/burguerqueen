@@ -13,13 +13,14 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatRadioButton, MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 import { ExtraSelectedPipe } from '../../pipes/extra-selected.pipe';
+import { CalculateTotalPricePipe } from '../../pipes/calculate-total-price.pipe';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [AsyncPipe, TranslateModule, MatDivider, MatMiniFabButton, MatIcon, 
     MatButton, NgClass, MatCard, MatCardContent, FormsModule, MatCheckbox, MatRadioButton, MatRadioGroup,
-    ExtraSelectedPipe, JsonPipe
+    ExtraSelectedPipe, JsonPipe, CalculateTotalPricePipe
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'

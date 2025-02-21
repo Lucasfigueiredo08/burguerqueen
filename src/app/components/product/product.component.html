@@ -16,8 +16,8 @@
                     
 
                     <div class="row mt-4 mb-4">
-                        <div class="col-7">
-                            <span class="h4">{{'label.price' | translate}}: {{product.price * quantitySignal()}} $</span>
+                        <div class="col-7 align-content-center">
+                            <span class="h4">{{'label.price' | translate}}: {{product | calculateTotalPrice: quantitySignal()}} $</span>
                         </div>
                         <div class="col-5">
                             <button mat-mini-fab class="me-2" (click)="oneLessProduct()" [disabled]="quantitySignal() <= 1">
