@@ -38,4 +38,9 @@ export class Order {
             (acumulador: number, value: IQuantityProduct) => this.calculateTotalPricePipe.transform(value.product, value.quantity) + acumulador, 0)
     }
 
+    private numProducts() {
+        return this._productsSignal().reduce(
+            (acumulado: number, value: IQuantityProduct) => value.quantity + acumulado, 0)
+    }
+
 }
