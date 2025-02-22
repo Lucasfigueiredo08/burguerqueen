@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatStepper, MatStep, MatStepLabel, MatStepperNext, MatStepperPrevious } from '@angular/material/stepper';
 import { MatButton } from '@angular/material/button';
-import { OrderStatusComponent } from '../order-status/order-status.component';
+import { OrderStatusComponent } from './components/order-status/order-status.component';
 
 @Component({
   selector: 'app-pay-order',

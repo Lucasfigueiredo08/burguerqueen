@@ -1,1 +1,17 @@
-<p>order-status works!</p>
+<div class="row">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-12 text-end">
+                <span class="h4">{{ 'label.total' | translate }}: {{totalOrderSignal()}} $</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {{productsSignal() | json}}
+            </div>
+        </div>
+
+    </div>
+</div>
