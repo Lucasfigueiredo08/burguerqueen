@@ -9,7 +9,40 @@
 
         <div class="row">
             <div class="col-12">
-                {{productsSignal() | json}}
+                
+                <table mat-table [dataSource]="productsSignal()">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                      <th class="h4" mat-header-cell *matHeaderCellDef> {{'label.name' | translate }} </th>
+                      <td class="p-3 h4" mat-cell *matCellDef="let element"> {{element.product.name | translate}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="price">
+                      <th class="h4" mat-header-cell *matHeaderCellDef> {{'label.price' | translate }} </th>
+                      <td class="p-3 h4" mat-cell *matCellDef="let element"> {{element.product | calculateTotalPrice }} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="quantity">
+                      <th class="h4" mat-header-cell *matHeaderCellDef> </th>
+                      <td class="p-3 h4" mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="total">
+                      <th class="h4" mat-header-cell *matHeaderCellDef> {{'label.total' | translate }} </th>
+                      <td class="p-3 h4" mat-cell *matCellDef="let element"> {{ element.product | calculateTotalPrice : element.quantity }} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+
             </div>
         </div>
 
