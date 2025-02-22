@@ -29,8 +29,19 @@
                   
                     <!-- Weight Column -->
                     <ng-container matColumnDef="quantity">
-                      <th class="h4" mat-header-cell *matHeaderCellDef> </th>
-                      <td class="p-3 h4" mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                      <th class="h4" mat-header-cell *matHeaderCellDef> {{ 'label.quantity' | translate }} </th>
+                        <td class="p-3 h4" mat-cell *matCellDef="let element"> 
+                            
+                            <button mat-mini-fab class="me-2" (click)="oneLessProduct(element.product)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+
+                            <span class="ms-1 me-2">{{ element.quantity }}</span>
+                            <button mat-mini-fab (click)="oneMoreProduct(element.product)">
+                                <mat-icon>add</mat-icon>
+                            </button>
+
+                        </td>
                     </ng-container>
                   
                     <!-- Symbol Column -->
