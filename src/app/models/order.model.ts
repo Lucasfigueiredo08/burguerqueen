@@ -2,7 +2,18 @@ import { computed, inject, Signal, signal, WritableSignal } from "@angular/core"
 import { IQuantityProduct } from "./quantity-product.model";
 import { IProduct } from "./product.model";
 import { CalculateTotalPricePipe } from "../pipes/calculate-total-price.pipe";
+import { IUser } from "./user.model";
 
+
+export interface IOrder {
+    _id?: string
+    address?: string
+    user: IUser
+    products: IQuantityProduct[]
+    date?: Date
+    total?: number
+    ticker?: number
+}
 
 export class Order {
 

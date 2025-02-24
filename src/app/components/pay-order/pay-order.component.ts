@@ -1,3 +1,5 @@
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from './../../../environments/environment';
 import { StripeService } from './../../services/stripe.service';
 import { Component, inject, ViewChild } from '@angular/core';
 import { MatStepper, MatStep, MatStepLabel, MatStepperNext, MatStepperPrevious } from '@angular/material/stepper';
@@ -15,6 +17,7 @@ import { IPayment } from '../../models/payment.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { IOrder } from '../../models/order.model';
 
 @Component({
   selector: 'app-pay-order',
@@ -125,7 +128,17 @@ export class PayOrderComponent {
       });
   }
 
-  createOrder(){
+  createOrder(){ 
+
+    const order: IOrder = {
+      address: 'Rua Santa Catarina 503',
+      user: {
+        email: 'test@email.com',
+        password: '123456'
+      },
+      products: this.userOrderService.productsSignals();
+
+    }
 
   }
 
